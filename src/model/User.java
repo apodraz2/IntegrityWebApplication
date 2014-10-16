@@ -16,31 +16,40 @@ import javax.mail.MessagingException;
  *
  */
 public class User {
-	private static String username;
-	private static String password;
-	private static ArrayList<String> items = new ArrayList<String>();
-	private static ArrayList<EbayGetter> ebayGetters = new ArrayList<EbayGetter>();
+	private String username;
+	private String password;
+	private String email;
+	private ArrayList<String> items = new ArrayList<String>();
+	private ArrayList<EbayGetter> ebayGetters = new ArrayList<EbayGetter>();
 	
 	
 	public User() {}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getEmail() {
+		return this.email;
+	}
 
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 
-	public static void setUsername(String username) {
-		User.username = username;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public static String getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public static void setPassword(String password) {
-		User.password = password;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
-	public static void addItem(String title) {
+	public void addItem(String title) {
 		
 		items.add(title);
 		
@@ -84,7 +93,7 @@ public class User {
 		if (items == null)
 			return null;
 		
-		return User.items;
+		return this.items;
 	}
 	
 	public void sendEmail() {
@@ -96,7 +105,7 @@ public class User {
 	}
 	
 	private void sendEmailFromList(ArrayList<Item> itemList) {
-		SendEmail se = new SendEmail(itemList);
+		SendEmail se = new SendEmail(itemList, this);
 		try {
 			se.send();
 		} catch (MessagingException e) {

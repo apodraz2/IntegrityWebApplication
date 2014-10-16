@@ -22,19 +22,22 @@ import javax.mail.internet.MimeMultipart;
 
 
 public class SendEmail {
+	private User user;
 	List<Item> items;
 	private int port = 465;
 	private String host = "smtp.gmail.com";
 	private String from = "apodra86@gmail.com";
-	private String to = "wususa@gmail.com";
+	private String to;
 	private boolean auth = true;
 	private String username = "apodra86@gmail.com";
 	private String password = "Sue22sueApod5418";
 	private Protocol protocol = Protocol.SMTP;
 	private boolean debug = true;
 	
-	public SendEmail(List<Item> items) {
+	public SendEmail(List<Item> items, User user) {
 		this.items = items;
+		this.user = user;
+		this.to = user.getEmail();
 	}
 	
 	public void send() throws AddressException, MessagingException {

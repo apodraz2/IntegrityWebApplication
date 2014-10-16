@@ -12,7 +12,7 @@
 <body>
 
 
-<% User user = (User) request.getAttribute("user"); %>
+<% User user = (User) session.getAttribute("user"); %>
 
 <h2> Greetings,  ${ user.getUsername() }  </h2>
 	
@@ -23,6 +23,7 @@
 	
 		<form action="Integrity" method="post" name="main">
 			<input type="hidden" name="action" value="add" >
+			
 			<p>Please enter a keyword: <input type="text" name="item">
 			<input type="submit" name="" value="Go!">
 		</form>
